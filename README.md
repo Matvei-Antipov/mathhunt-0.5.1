@@ -1,4 +1,4 @@
-# mathhunt Library
+# Mathhunt Library
 
 Mathhunt is a lightweight Python library designed for quick and efficient mathematical computations. It provides functions for calculating the volume and area of various geometric shapes, as well as distances between points in a Cartesian coordinate system.
 
@@ -8,10 +8,11 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
 - [Installation](#installation)
 - [Usage](#usage)
   - [Volume Calculation](#Volume-calculation)
+  - [Square Calculation](#Square-calculation)
   - [Area Calculation](#Area-calculation)
   - [Distance Calculation](#Distance-calculation)
   - [Mathematical function](#mathematical-function)
-- [License](#license)
+  - [Visualization](#visuals)
 
 ## Features
 
@@ -20,32 +21,40 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
 - **Distance Calculations**: Compute distances between points in a Cartesian coordinate system.
 - **Error Handling**: Comprehensive error handling to ensure valid input types and values.
 - **Mathematical Functions**: Use all mathematical functions required.
+- **Visualization**: Creates some figures in 2D format. 3D modelling is in progress and was not already implemented.
 
 ## Installation
 
-```pip install fastmath```
+```pip install mathhunt```
 
 ## Usage
 
-You should import module that you need to use from fastmath
+You should import module that you need to use from mathhunt
 
 For example you need to use sinus function. You should situate 
 
 ```python
 from mathhunt import functions
 
-print(functions.sinus(45, "deg"))```
+print(functions.sinus(45, "deg"))
+```
 
 Here you can see 2 arguments
 
-##Volume-calculation
+## Volume-calculation
 
 - The volume function calculates the volume of various 3D shapes  based on the provided shape type and corresponding metrics. It supports multiple geometric shapes and ensures input validation for accurate calculations.
 
 **Parameters**
-```*args (float)```: A variable-length argument list representing the necessary metrics for the specified shape (e.g., radius, height, side length). The number of arguments required depends on the shape type.
+```python
+*args (float)
+```
+: A variable-length argument list representing the necessary metrics for the specified shape (e.g., radius, height, side length). The number of arguments required depends on the shape type.
 
-```type (str)```: A string that specifies the type of shape for which the volume is to be calculated. Supported types include:
+```python
+type (str)
+```
+: A string that specifies the type of shape for which the volume is to be calculated. Supported types include:
 
 'parallelepiped'
 'cube'
@@ -81,16 +90,61 @@ volume_cylinder = volume(2, 5, type='cylinder')  # Returns: 25.12
 volume_sphere = volume(4, type='sphere')  # Returns: 268.08
 
 > Invalid usage example
-```volume_invalid = volume(2, 3, type='invalid_shape')```
+```python
+volume_invalid = volume(2, 3, type='invalid_shape')
+```
 Raises ValueError
 
-##Area-calculation
+## Square-calculation
+### `square(*args: float, type: str) -> float`  
+Calculate the **area of various 2D shapes** (and surface area of a sphere).  
+
+**Arguments**:  
+- `*args` *(float)* – Metrics for the shape, depends on `type`.  
+- `type` *(str)* – Shape type. Supported values:  
+  - `"quadrate"` – requires **1 argument**: side  
+  - `"rectangle"` – requires **2 arguments**: width, height  
+  - `"triangle_h"` – requires **2 arguments**: base, height  
+  - `"triangle_s"` – requires **3 arguments**: side a, side b, side c (Heron’s formula)  
+  - `"circle"` – requires **1 argument**: radius  
+  - `"trapezoid"` – requires **3 arguments**: base a, base b, height  
+  - `"rhombus"` – requires **2 arguments**: diagonal d1, diagonal d2  
+  - `"parallelogram"` – requires **2 arguments**: base, height  
+  - `"sector"` – requires **2 arguments**: angle (deg), radius  
+  - `"ellipse"` – requires **2 arguments**: half-axis a, half-axis b  
+  - `"polygon"` – requires **3 arguments**: n (sides), inscribed circle radius, side length  
+  - `"sphere"` – requires **1 argument**: radius (returns surface area)  
+
+**Returns**:  
+- *(float)* – area of the specified shape  
+
+**Raises**:  
+- `TypeError` – if inputs are not numbers or `type` is not a string  
+- `ValueError` – if shape type is invalid, wrong number of arguments, or non-positive metrics  
+
+**Examples**:  
+```python
+square(5, type="quadrate")        # → 25  
+square(3, 4, type="rectangle")    # → 12  
+square(6, 8, type="triangle_h")   # → 24  
+square(3, type="circle")          # → 28.26  
+square(5, 7, 9, type="triangle_s")# → 15.59 (Heron’s formula)  
+square(10, type="sphere")         # → 1256.0  
+```
+
+## Area-calculation
 - The square function calculates the area of various 2D shapes based on the specified shape type and corresponding metrics. This function is designed to handle multiple geometric shapes and includes robust input validation for accurate area calculations.
 
 **Parameters**
-```*args (float):``` A variable-length argument list that represents the necessary metrics for the specified shape (e.g., side lengths, radius). The number of arguments required varies depending on the shape type.
+```python
+*args (float):
+```
+ A variable-length argument list that represents the necessary metrics for the specified shape (e.g., side lengths, radius). The number of arguments required varies depending on the shape type.
 
-```type (str):``` A string that specifies the type of shape for which the area is to be calculated. Supported types include:
+```python
+type (str):
+```
+ A string that specifies the type of shape for which the area is to be calculated. Supported types include:
 
 'quadrate'
 'rectangle'
@@ -135,13 +189,19 @@ area_circle = square(2, type='circle')  # Expected output: 12.56
 area_invalid = square(3, type='invalid_shape')  
 This will raise ValueError
 
-##Distance-calculation
+## Distance-calculation
  -**Function: distance**
 Calculates various types of distances based on the specified type and dimension.
 
 **Parameters**
-```*args (float):``` Coordinates or parameters required for distance calculation.
-```type (str):``` The type of distance to calculate. Supported types include:
+```python
+*args (float):
+```
+Coordinates or parameters required for distance calculation.
+```python
+type (str):
+```
+ The type of distance to calculate. Supported types include:
 'dist_points'
 'dist_point_line'
 'dist_point_plane'
@@ -173,7 +233,10 @@ manhattan_dist = distance(1, 2, 3, 4, 5, 6, type='dist_manhattan', dimension='3d
 Calculates the circumference of a circle.
 
 Parameters
-```r (float):``` The radius of the circle.
+```python
+r (float):
+```
+The radius of the circle.
 Returns
 float: The calculated circumference of the circle.
 Raises
@@ -185,14 +248,20 @@ TypeError: If the radius is not a number.
 circ = circumference(5)  # Output: 31.400000000000002
 
 
-Here's an explanation for the distance, circumference, ```arc_length```, and ```vector_length``` functions from your Mathhunt library. This documentation will help users understand the purpose, parameters, return values, and potential exceptions raised by each function.
+Here's an explanation for the distance, circumference, **arc_length**, and **vector_length** functions from your Mathhunt library. This documentation will help users understand the purpose, parameters, return values, and potential exceptions raised by each function.
 
  -**Function: arc_length**
 Calculates the length of an arc of a circle.
 
 Parameters
-```r (float):``` The radius of the circle.
-```rad (float):``` The angle in radians.
+```python
+r (float):
+```
+ The radius of the circle.
+```python
+rad (float):
+```
+ The angle in radians.
 Returns
 float: The calculated arc length.
 Raises
@@ -202,14 +271,22 @@ ValueError: If the angle is out of the valid range.
 **Example of usage**
 
 > Calculate the length of an arc with radius 10 and angle π/2
-```arc = arc_length(10, 1.5708)  # Output: 15.707999999999998```
+```python
+arc = arc_length(10, 1.5708)  # Output: 15.707999999999998
+```
 
  -**Function: vector_length**
 Calculates the length of a vector.
 
 *Parameters*
-```*args (float):``` The components of the vector.
-```dimension (str):``` The dimension of the vector, either '2d' or '3d'.
+```python
+*args (float):
+```
+ The components of the vector.
+```python
+dimension (str):
+```
+ The dimension of the vector, either '2d' or '3d'.
 **Returns**
 float: The calculated length of the vector.
 **Raises**
@@ -219,9 +296,381 @@ ValueError: If dimension is invalid.
 **Example of usage**
 
 > Calculate the length of a 2D vector (3, 4)
-```vec_length_2d = vector_length(3, 4, dimension='2d')  # Output: 5.0```
+```python
+vec_length_2d = vector_length(3, 4, dimension='2d')  # Output: 5.0
+```
 
 > Calculate the length of a 3D vector (1, 2, 2)
-```vec_length_3d = vector_length(1, 2, 2, dimension='3d')  # Output: 3.0```
+```python
+vec_length_3d = vector_length(1, 2, 2, dimension='3d')  # Output: 3.0
+```
 
--##Mathematical-function
+
+## Mathematical-function
+## Linear and Quadratic Functions
+
+### `linear_function(a: float, x: float, b: float) -> float`  
+Calculates the value of a linear function **ax + b**.  
+
+**Arguments**:  
+- `a` *(float)* – coefficient of x  
+- `x` *(float)* – input variable  
+- `b` *(float)* – constant term  
+
+**Returns**:  
+- *(float)* – result of `ax + b`  
+
+---
+
+### `quadratic_function(a: float, x: float, b: float, c: float) -> float`  
+Calculates the value of a quadratic function **ax² + bx + c**.  
+
+**Arguments**:  
+- `a` *(float)* – coefficient of x²  
+- `x` *(float)* – input variable  
+- `b` *(float)* – coefficient of x  
+- `c` *(float)* – constant term  
+
+**Raises**:  
+- `ValueError` if `a = 0`  
+
+**Returns**:  
+- *(float)* – result of `ax² + bx + c`  
+
+---
+
+## Power and Root Functions
+
+### `power_function(x: float, n: float) -> float`  
+Raises a number `x` to the power of `n`.  
+
+**Arguments**:  
+- `x` *(float)* – base  
+- `n` *(float)* – exponent  
+
+**Returns**:  
+- *(float)* – result of `xⁿ`  
+
+---
+
+### `root_function(x: float, n: float) -> float`  
+Calculates the **n-th root** of a number `x`.  
+
+**Arguments**:  
+- `x` *(float)* – number to extract the root from  
+- `n` *(float)* – degree of the root  
+
+**Raises**:  
+- `ValueError` if `x < 0`  
+
+**Returns**:  
+- *(float)* – result of `x^(1/n)`  
+
+---
+
+### `pointer_function(x: float, a: float) -> float`  
+Calculates **a raised to the power of x**.  
+
+**Arguments**:  
+- `x` *(float)* – exponent  
+- `a` *(float)* – base  
+
+**Returns**:  
+- *(float)* – result of `a^x`  
+
+---
+
+### `logarithm_function(a: float, x: float) -> float`  
+Calculates the logarithm of `x` with base `a`.  
+
+**Arguments**:  
+- `a` *(float)* – base of the logarithm (must be > 0 and != 1)  
+- `x` *(float)* – argument of the logarithm (must be > 0)  
+
+**Returns**:  
+- *(float)* – logₐ(x)  
+
+---
+
+## Absolute Value
+
+### `absolut_function(x: float) -> float`  
+Returns the absolute value of a number.  
+
+**Arguments**:  
+- `x` *(float)* – input number  
+
+**Returns**:  
+- *(float)* – |x|  
+
+---
+
+## Trigonometric Functions (Bradis Table)
+
+### `sinus(x: float, type: str) -> float`  
+Calculates the sine of an angle.  
+
+**Arguments**:  
+- `x` *(float)* – angle  
+- `type` *(str)* – `"deg"` for degrees, `"rad"` for radians  
+
+**Returns**:  
+- *(float)* – sin(x)  
+
+---
+
+### `cosinus(x: float, type: str) -> float`  
+Calculates the cosine of an angle.  
+
+**Arguments**:  
+- `x` *(float)* – angle  
+- `type` *(str)* – `"deg"` or `"rad"`  
+
+**Returns**:  
+- *(float)* – cos(x)  
+
+---
+
+### `tangens(x: float, type: str) -> float`  
+Calculates the tangent of an angle.  
+
+**Arguments**:  
+- `x` *(float)* – angle  
+- `type` *(str)* – `"deg"` or `"rad"`  
+
+**Returns**:  
+- *(float)* – tan(x)  
+
+---
+
+### `cotangens(x: float, type: str) -> float`  
+Calculates the cotangent of an angle.  
+
+**Arguments**:  
+- `x` *(float)* – angle  
+- `type` *(str)* – `"deg"` or `"rad"`  
+
+**Returns**:  
+- *(float)* – cot(x)  
+
+---
+
+## Inverse Trigonometric Functions
+
+### `arcsin(x: float) -> float`  
+Finds the arcsine of `x` using Bradis table.  
+
+**Arguments**:  
+- `x` *(float)* – sine value  
+
+**Returns**:  
+- *(float)* – angle in degrees  
+
+---
+
+### `arccos(x: float) -> float`  
+Finds the arccosine of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – cosine value  
+
+**Returns**:  
+- *(float)* – angle in degrees  
+
+---
+
+### `arctan(x: float) -> float`  
+Finds the arctangent of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – tangent value  
+
+**Returns**:  
+- *(float)* – angle in degrees  
+
+---
+
+### `arccot(x: float) -> float`  
+Finds the arccotangent of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – cotangent value  
+
+**Returns**:  
+- *(float)* – angle in degrees  
+
+---
+
+## Exponential and Hyperbolic Functions
+
+### `exponential_function(x: float) -> float`  
+Calculates **e^x**.  
+
+**Arguments**:  
+- `x` *(float)* – exponent  
+
+**Returns**:  
+- *(float)* – e^x  
+
+---
+
+### `sinh(x: float) -> float`  
+Calculates the hyperbolic sine of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – input value  
+
+**Returns**:  
+- *(float)* – sinh(x)  
+
+---
+
+### `cosh(x: float) -> float`  
+Calculates the hyperbolic cosine of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – input value  
+
+**Returns**:  
+- *(float)* – cosh(x)  
+
+---
+
+### `tanh(x: float) -> float`  
+Calculates the hyperbolic tangent of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – input value  
+
+**Returns**:  
+- *(float)* – tanh(x)  
+
+---
+
+### `coth(x: float) -> float`  
+Calculates the hyperbolic cotangent of `x`.  
+
+**Arguments**:  
+- `x` *(float)* – input value  
+
+**Returns**:  
+- *(float)* – coth(x)  
+
+---
+
+## Summation and Product
+
+### `sigma(i: int, n: int, equation: float = 0.0) -> float`  
+Calculates the sum of integers from `i` to `n`.  
+
+**Arguments**:  
+- `i` *(int)* – start index  
+- `n` *(int)* – end index  
+- `equation` *(float, optional)* – initial value (default `0.0`)  
+
+**Returns**:  
+- *(float)* – total sum  
+
+---
+
+### `sigma_p(i: int, n: int, equation: float = 1.0) -> float`  
+Calculates the product of integers from `i` to `n`.  
+
+**Arguments**:  
+- `i` *(int)* – start index  
+- `n` *(int)* – end index  
+- `equation` *(float, optional)* – initial value (default `1.0`)  
+
+**Returns**:  
+- *(float)* – total product  
+
+## Visualization
+
+In that module you can implement models of 2D figures in the graphical representation.
+
+**Example of usage**
+
+> Draw a rectangle with A=4 and B=2
+```python
+from functions_viz import *
+from core import *
+
+create_rectangle(4, 2, dimension="2d")
+
+show()
+```
+
+![alt text](image.png)
+
+As you saw here was used function `show()` in the end of the code. That is a powerfull instrument that gives us an opportunity to draw several figures in a one plot simultaneuosly.
+
+**Example of usage**
+
+> Draw a rectangle with A=22 and B=12
+> Draw a circle with r=10
+```python
+from functions_viz import *
+from core import *
+
+create_rectangle(4, 2, dimension="2d")
+create_circle(10, dimension="2d")
+
+show()
+```
+![alt text](image-1.png)
+
+But you should be careful in usage because all figures are implemented in a queue-tendency. For example that code will cause some trouble because the circle is bigger than square and it gives no space for quadrate to be visible.
+
+
+```python
+from functions_viz import *
+from core import *
+
+create_quadrate(2, dimension="2d")
+create_circle(10, dimension="2d")
+
+show()
+```
+
+![alt text](image-2.png)
+
+### `create_quadrate(*args: float, dimension: str)`
+- Draws a 2D quadrate (square) centered at the origin.
+
+**Arguments**:  
+- `a` *(float)* – input side  
+- `dimension` *(str)* – 2d (only)
+
+### `create_reactangle(*args: float, dimension: str)`
+- Draws a 2D rectangle centered at the origin.
+
+**Arguments**:  
+- `a` *(float)* – input side A
+- `b` *(float)* – input side B 
+- `dimension` *(str)* – 2d (only)
+
+### `create_circle(*args: float, dimension: str)`
+- Draws a 2D circle centered at the origin.
+
+**Arguments**:  
+- `r` *(float)* – input radius
+- `dimension` *(str)* – 2d (only)
+
+### `create_triangle(*args: float, dimension: str)`
+- Draws a 2D trianle centered at the origin.
+
+**Arguments**:  
+- `a` *(float)* – input length A
+- `b` *(float)* – input length B
+- `c` *(float)* – input length C
+- `dimension` *(str)* – 2d (only)
+
+### `create_trapezoid(*args: float, dimension: str)`
+- Draws a 2D trapezoid centered at the origin.
+
+**Arguments**:  
+- `ad` *(float)* – input length AD
+- `bc` *(float)* – input length BC
+- `ab` *(float)* – input length AB
+- `cd` *(float)* – input length CD
+- `dimension` *(str)* – 2d (only)

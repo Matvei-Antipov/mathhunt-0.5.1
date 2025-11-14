@@ -7,6 +7,7 @@ mathhunt.egg-info/PKG-INFO
 mathhunt.egg-info/SOURCES.txt
 mathhunt.egg-info/dependency_links.txt
 mathhunt.egg-info/not-zip-safe
+mathhunt.egg-info/requires.txt
 mathhunt.egg-info/top_level.txt
 mathhunt/__data/__init__.py
 mathhunt/__data/bradis_table.json
@@ -17,3 +18,6 @@ mathhunt/geometry/distances.py
 mathhunt/geometry/shapes.py
 mathhunt/logic/__init__.py
 mathhunt/logic/logic.py
+mathhunt/viz/__init__.py
+mathhunt/viz/core.py
+mathhunt/viz/functions_viz.py

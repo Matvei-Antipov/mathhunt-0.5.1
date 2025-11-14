@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mathhunt",
-    version="0.3.1",
+    version="0.4.0",
     author="Matvei Antipov",
     author_email="matveiantipov2007@gmail.com",
     description="Toolkit for math calculations.",
