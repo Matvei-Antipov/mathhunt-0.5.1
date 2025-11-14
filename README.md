@@ -299,6 +299,9 @@ ValueError: If dimension is invalid.
 ```python
 vec_length_2d = vector_length(3, 4, dimension='2d')  # Output: 5.0
 ```
+```python
+vec_length_2d = vector_length(3, 4, dimension='2d')  # Output: 5.0
+```
 
 > Calculate the length of a 3D vector (1, 2, 2)
 ```python
