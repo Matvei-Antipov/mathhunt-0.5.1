@@ -25,7 +25,9 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
 
 ## Installation
 
-```pip install mathhunt```
+```cmd
+pip install mathhunt
+```
 
 ## Usage
 
@@ -678,3 +680,4 @@ show()
 - `cd` *(float)* – input length CD
 
 - `dimension` *(str)* – 2d (only)
+
