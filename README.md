@@ -12,7 +12,7 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
   - [Area Calculation](#Area-calculation)
   - [Distance Calculation](#Distance-calculation)
   - [Mathematical function](#mathematical-function)
-  - [Visualization](#visuals)
+  - [Visualization](#visualization)
 
 ## Features
 
@@ -25,7 +25,9 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
 
 ## Installation
 
-```pip install mathhunt```
+```cmd
+pip install mathhunt
+```
 
 ## Usage
 
@@ -676,4 +678,6 @@ show()
 - `bc` *(float)* – input length BC
 - `ab` *(float)* – input length AB
 - `cd` *(float)* – input length CD
+
 - `dimension` *(str)* – 2d (only)
+
