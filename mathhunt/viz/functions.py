@@ -1,7 +1,8 @@
 import numpy as np
 from typing import Tuple
-from core import get_ax, get_next_color, get_next_hatch, get_next_edge
+from .core import get_ax, get_next_color, get_next_hatch, get_next_edge
 import matplotlib.pyplot as plt
+
 
 def create_quadrate(*args: float, dimension: str):
     """
@@ -138,7 +139,8 @@ def create_circle(*args: float, dimension: str):
         print("[mathhunt] : [vizuals] : 3D circles are not implemented yet.")
     else:
         raise ValueError("[mathhunt] : [vizuals] : Dimension must be '2d' or '3d'")
-    
+
+  
 def create_triangle(*args: float, dimension: str):
     """
     Draw a triangle.
@@ -196,6 +198,7 @@ def create_triangle(*args: float, dimension: str):
     else:
         raise ValueError("[mathhunt] : [vizuals] : Dimension must be '2d' or '3d'")
 
+
 def create_trapezoid(*args: float, dimension: str):
     """
     Draw a trapezoid.
@@ -245,3 +248,16 @@ def create_trapezoid(*args: float, dimension: str):
     ax.set_ylim(-1, yD + 1)   
 
     ax.fill([A[0], B[0], C[0], D[0], A[0]], [A[1], B[1], C[1], D[1], A[1]], facecolor=color, edgecolor='black', linewidth=2, hatch=get_next_hatch(), label=f"Trapezoid {AD}x{BC}x{AB}x{CD}") 
+
+
+def create_point(x: float, y: float, color: str = 'black', label: str = None):
+    """
+    Draws a single point on the current axis.
+    
+    Arguments:
+        x, y: Coordinates.
+        color: Color of the point.
+        label: Label for the legend.
+    """
+    ax = get_ax()
+    ax.scatter(x, y, color=color, s=15, label=label, zorder=5)

@@ -1,5 +1,6 @@
 from typing import Tuple
 
+
 def volume(*args: float, type: str) -> float:
     """
     Calculate the volume of various 3D shapes.
@@ -62,6 +63,7 @@ def volume(*args: float, type: str) -> float:
         return ((2 ** 0.5) / 3.0) * (args[0] ** 3)
     if type == "icosahedron":
         return ((5 * (3 + (5 ** 0.5))) / 12.0) * (args[0] ** 3)
+
 
 def square(*args: float, type: str) -> float:
     """

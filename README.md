@@ -4,24 +4,14 @@ Mathhunt is a lightweight Python library designed for quick and efficient mathem
 
 ## Table of Contents
 
-- [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-  - [Volume Calculation](#Volume-calculation)
-  - [Square Calculation](#Square-calculation)
-  - [Area Calculation](#Area-calculation)
-  - [Distance Calculation](#Distance-calculation)
-  - [Mathematical function](#mathematical-function)
+- [Modules](#modules)
+  - [Geometry](#geometry)
+  - [Mathematical-functions](#mathematical-functions)
   - [Visualization](#visualization)
+  - [Probability](#probability)
+  - [Logic](#logic)
 
-## Features
-
-- **Volume Calculations**: Calculate the volume of shapes like cubes, spheres, cylinders, and more.
-- **Area Calculations**: Calculate the area of shapes such as circles, triangles, rectangles, and polygons.
-- **Distance Calculations**: Compute distances between points in a Cartesian coordinate system.
-- **Error Handling**: Comprehensive error handling to ensure valid input types and values.
-- **Mathematical Functions**: Use all mathematical functions required.
-- **Visualization**: Creates some figures in 2D format. 3D modelling is in progress and was not already implemented.
 
 ## Installation
 
@@ -43,7 +33,8 @@ print(functions.sinus(45, "deg"))
 
 Here you can see 2 arguments
 
-## Volume-calculation
+## Geometry
+### Volume-calculation
 
 - The volume function calculates the volume of various 3D shapes  based on the provided shape type and corresponding metrics. It supports multiple geometric shapes and ensures input validation for accurate calculations.
 
@@ -97,8 +88,8 @@ volume_invalid = volume(2, 3, type='invalid_shape')
 ```
 Raises ValueError
 
-## Square-calculation
-### `square(*args: float, type: str) -> float`  
+### Square-calculation
+`square(*args: float, type: str) -> float`  
 Calculate the **area of various 2D shapes** (and surface area of a sphere).  
 
 **Arguments**:  
@@ -134,7 +125,7 @@ square(5, 7, 9, type="triangle_s")# → 15.59 (Heron’s formula)
 square(10, type="sphere")         # → 1256.0  
 ```
 
-## Area-calculation
+### Area-calculation
 - The square function calculates the area of various 2D shapes based on the specified shape type and corresponding metrics. This function is designed to handle multiple geometric shapes and includes robust input validation for accurate area calculations.
 
 **Parameters**
@@ -191,7 +182,7 @@ area_circle = square(2, type='circle')  # Expected output: 12.56
 area_invalid = square(3, type='invalid_shape')  
 This will raise ValueError
 
-## Distance-calculation
+### Distance-calculation
  -**Function: distance**
 Calculates various types of distances based on the specified type and dimension.
 
@@ -310,9 +301,7 @@ vec_length_2d = vector_length(3, 4, dimension='2d')  # Output: 5.0
 vec_length_3d = vector_length(1, 2, 2, dimension='3d')  # Output: 3.0
 ```
 
-
-## Mathematical-function
-## Linear and Quadratic Functions
+## Mathematical Functions
 
 ### `linear_function(a: float, x: float, b: float) -> float`  
 Calculates the value of a linear function **ax + b**.  
@@ -344,7 +333,7 @@ Calculates the value of a quadratic function **ax² + bx + c**.
 
 ---
 
-## Power and Root Functions
+### Power and Root Functions
 
 ### `power_function(x: float, n: float) -> float`  
 Raises a number `x` to the power of `n`.  
@@ -397,7 +386,7 @@ Calculates the logarithm of `x` with base `a`.
 
 ---
 
-## Absolute Value
+### Absolute Value
 
 ### `absolut_function(x: float) -> float`  
 Returns the absolute value of a number.  
@@ -410,7 +399,7 @@ Returns the absolute value of a number.
 
 ---
 
-## Trigonometric Functions (Bradis Table)
+### Trigonometric Functions (Bradis Table)
 
 ### `sinus(x: float, type: str) -> float`  
 Calculates the sine of an angle.  
@@ -460,7 +449,7 @@ Calculates the cotangent of an angle.
 
 ---
 
-## Inverse Trigonometric Functions
+### Inverse Trigonometric Functions
 
 ### `arcsin(x: float) -> float`  
 Finds the arcsine of `x` using Bradis table.  
@@ -506,7 +495,7 @@ Finds the arccotangent of `x`.
 
 ---
 
-## Exponential and Hyperbolic Functions
+### Exponential and Hyperbolic Functions
 
 ### `exponential_function(x: float) -> float`  
 Calculates **e^x**.  
@@ -563,7 +552,7 @@ Calculates the hyperbolic cotangent of `x`.
 
 ---
 
-## Summation and Product
+### Summation and Product
 
 ### `sigma(i: int, n: int, equation: float = 0.0) -> float`  
 Calculates the sum of integers from `i` to `n`.  
@@ -597,8 +586,7 @@ In that module you can implement models of 2D figures in the graphical represent
 
 > Draw a rectangle with A=4 and B=2
 ```python
-from functions_viz import *
-from core import *
+from mathhunt.viz.functions import *
 
 create_rectangle(4, 2, dimension="2d")
 
@@ -614,8 +602,7 @@ As you saw here was used function `show()` in the end of the code. That is a pow
 > Draw a rectangle with A=22 and B=12
 > Draw a circle with r=10
 ```python
-from functions_viz import *
-from core import *
+from mathhunt.viz.functions import *
 
 create_rectangle(4, 2, dimension="2d")
 create_circle(10, dimension="2d")
@@ -628,8 +615,7 @@ But you should be careful in usage because all figures are implemented in a queu
 
 
 ```python
-from functions_viz import *
-from core import *
+from mathhunt.viz.functions import *
 
 create_quadrate(2, dimension="2d")
 create_circle(10, dimension="2d")
@@ -681,3 +667,98 @@ show()
 
 - `dimension` *(str)* – 2d (only)
 
+### `animate_monte_carlo(n_points: int)`
+- Animate Monte-Carlo method with auto acceleration.
+
+**Arguments**:  
+- `n_points` *(int)* – Amount of points
+
+That function is animated. So we should use a little bit simplier syntax to run the simulation. All funjctions with animations will be used as follows:
+
+**Example of usage**
+
+> Run the animation with 1000 points.
+```python
+from mathhunt.viz.animations import *
+
+animate_monte_carlo(1000)
+
+```
+
+As you have seen here you should not use `show()` function in the end of a script. That makes animation logic easy to use.
+
+![alt text](image-3.png)
+
+## Probability
+
+In that module you can use some functions to calculate probability.
+
+**Example of usage**
+
+> Find all the possible formations for 11 players on a football field
+```python
+from mathhunt.probability.functions import P_n
+
+print(P_n(11.0))
+
+```
+
+### `fact(n: float, type: str) -> float`
+- Calculate the factorial of a non-negative integer n.
+
+**Arguments**:  
+- `n` *(int)* – A non-negative integer.
+
+### `P_n(n: float) -> int`
+- Calculate the number of permutations of n elements.
+
+**Arguments**:  
+- `n` *(float)* – A non-negative float.
+
+### `A_n_k(n: float, k: float) -> int`
+- Calculate the number of arrangements of n elements taken k at a time.
+
+**Arguments**:  
+- `n` *(float)* – A non-negative float.
+- `k` *(float)* – A non-negative float less than or equal to n.
+
+### `C_n_k(n: float, k: float) -> int`
+- Calculate the number of combinations of n elements taken k at a time.
+
+**Arguments**:  
+- `n` *(float)* – A non-negative float.
+- `k` *(float)* – A non-negative float less than or equal to n.
+
+### `P(event_outcomes: float, total_outcomes: float) -> float`
+- Calculate the probability of an event.
+
+**Arguments**:  
+- `event_outcomes` *(float)* – Number of favorable outcomes for the event.
+- `total_outcomes` *(float)* – Total number of possible outcomes.
+
+### `roll(sides: int = 6) -> int`
+- Simulate rolling a die with a given number of sides.
+
+**Arguments**:  
+- `sides` *(int)* – Number of sides on the die (default is 6).
+
+**Returns**:
+- An integer representing the result of the die roll.
+
+### `flip() -> str`
+-  Simulate flipping a coin.
+
+**Returns**:
+- A string representing the result of the coin flip ("Heads" or "Tails").
+
+### `generate_monte_carlo_point()`
+-  Generates a random point in [-1, 1]x[-1, 1] and checks if it's inside unit circle.
+
+**Returns**:
+- (x, y, is_inside)
+
+## Logic
+
+In that module you can use features of boolean algebra.
+
+> Soon.

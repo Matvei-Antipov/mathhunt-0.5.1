@@ -47,12 +47,14 @@ _edges = [
     "gold"
 ]
 
+
 def get_ax():
     """Return current axis or make new if it is needed."""
     global _ax
     if _ax is None:
         _, _ax = plt.subplots()
     return _ax
+
 
 def get_next_color():
     """Return next color."""
@@ -61,6 +63,7 @@ def get_next_color():
     _color_index += 1
     return color
 
+
 def get_next_hatch():
     """Return next color."""
     global _hatches_index
@@ -68,12 +71,14 @@ def get_next_hatch():
     _hatches_index += 1
     return hatch
 
+
 def get_next_edge():
     """Return next color."""
     global _edges_index
     edge = _edges[_edges_index % len(_edges)]
     _edges_index += 1
     return edge
+
 
 def show():
     """Show all figures in a one coordinate system"""

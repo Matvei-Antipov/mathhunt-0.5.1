@@ -1,6 +1,7 @@
 import json
 import os
 
+
 def _load_bradys_table(filename='__data\\bradis_table.json'):
 
     if __name__ != 'mathhunt.functions.functions':
@@ -10,6 +11,7 @@ def _load_bradys_table(filename='__data\\bradis_table.json'):
     with open(filepath, 'r') as f:
         data = json.load(f)
     return data
+
 
 def linear_function(a: float, x: float, b: float) -> float:
     """
@@ -30,6 +32,7 @@ def linear_function(a: float, x: float, b: float) -> float:
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be numbers (int or float)")
     
     return (a * x) + b
+
 
 def quadratic_function(a: float, x: float, b: float, c: float) -> float:
     """
@@ -55,7 +58,8 @@ def quadratic_function(a: float, x: float, b: float, c: float) -> float:
         raise ValueError("[mathhunt] : [functions] : If A is 0 that's a linear function")
     
     return (a * (x ** 2)) + (b * x) + c
-    
+
+
 def power_function(x: float, n: float) -> float:
     """
     Calculate the power of a number.
@@ -74,7 +78,8 @@ def power_function(x: float, n: float) -> float:
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be numbers (int or float)")
     
     return x ** n
-    
+
+
 def root_function(x: float, n: float) -> float:
     """
     Calculate the nth root of a number.
@@ -97,7 +102,8 @@ def root_function(x: float, n: float) -> float:
         raise ValueError("[mathhunt] : [functions] : Input error! Result is NaN")
 
     return x ** (1 / n)
-    
+
+   
 def pointer_function(x: float, a: float) -> float:
     """
     Calculate a raised to the power of x.
@@ -120,7 +126,8 @@ def pointer_function(x: float, a: float) -> float:
         raise ValueError("[mathhunt] : [functions] : Input error! Function is unstable, a must not be equal to 0")
     
     return a ** x
-    
+
+   
 def logarithm_function(a: float, x: float) -> float:
     """
     Calculate the logarithm of x with base a.
@@ -165,6 +172,7 @@ def logarithm_function(a: float, x: float) -> float:
 
     return log_value
 
+
 def absolut_function(x: float) -> float:
     """
     Calculate the absolute value of x.
@@ -184,7 +192,8 @@ def absolut_function(x: float) -> float:
     if x < 0:
         return -x
     return x
-        
+
+
 def sinus(x: float, type: str) -> float:
     """
     Calculate the sine of an angle given in degrees or radians using Bradis table.
@@ -222,6 +231,7 @@ def sinus(x: float, type: str) -> float:
         if key in angles:
             return angles[key]['sin']
     raise ValueError(f"[mathhunt] : [functions] : Angle {x} not found in Bradis table")
+
 
 def cosinus(x: float, type: str) -> float:
     """
@@ -261,6 +271,7 @@ def cosinus(x: float, type: str) -> float:
             return angles[key]['cos']
     raise ValueError(f"[mathhunt] : [functions] : Angle {x} not found in Bradis table")
 
+
 def tangens(x: float, type: str) -> float:
     """
     Calculate the tangent of an angle given in degrees or radians using Bradis table.
@@ -298,6 +309,7 @@ def tangens(x: float, type: str) -> float:
         if key in angles:
             return angles[key]['tan']
     raise ValueError(f"[mathhunt] : [functions] : Angle {x} not found in Bradis table")
+
 
 def cotangens(x: float, type: str) -> float:
     """
@@ -337,6 +349,7 @@ def cotangens(x: float, type: str) -> float:
             return 1 / angles[key]['tan']
     raise ValueError(f"[mathhunt] : [functions] : Angle {x} not found in Bradis table")
 
+
 def arcsin(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be an integer or float")
@@ -347,6 +360,7 @@ def arcsin(x: float) -> float:
         if value.get("sin") == x:
             return float(key)
     raise ValueError(f"[mathhunt] : [functions] : arcsin({x}) not found in Bradis table")
+
 
 def arccos(x: float) -> float:
     if not isinstance(x, (int, float)):
@@ -359,6 +373,7 @@ def arccos(x: float) -> float:
             return float(key)
     raise ValueError(f"[mathhunt] : [functions] : arccos({x}) not found in Bradis table")
 
+
 def arctan(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be an integer or float")
@@ -369,6 +384,7 @@ def arctan(x: float) -> float:
         if value.get("tan") == x:
             return float(key)
     raise ValueError(f"[mathhunt] : [functions] : arctan({x}) not found in Bradis table")
+
 
 def arccot(x: float) -> float:
     if not isinstance(x, (int, float)):
@@ -381,30 +397,36 @@ def arccot(x: float) -> float:
             return float(key)
     raise ValueError(f"[mathhunt] : [functions] : arccot({x}) not found in Bradis table")
 
+
 def exponential_function(x: float) -> float:
     if not isinstance(x, float):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be a number")
     return 2.71828 ** x
+
 
 def sinh(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be a number")
     return ((2.71828 ** x) - (2.71828 ** -(x))) / 2
 
+
 def cosh(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be a number")
     return ((2.71828 ** x) + (2.71828 ** -(x))) / 2
+
 
 def tanh(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be a number")
     return ((2.71828 ** x) - (2.71828 ** -(x))) / ((2.71828 ** x) + (2.71828 ** -(x)))
 
+
 def coth(x: float) -> float:
     if not isinstance(x, (int, float)):
         raise TypeError("[mathhunt] : [functions] : Input error! Arguments must be a number")
     return ((2.71828 ** x) + (2.71828 ** -(x))) / ((2.71828 ** x) - (2.71828 ** -(x)))
+
 
 def sigma(i: int, n: int, equation: float = 0.0) -> float:
     """
@@ -430,6 +452,7 @@ def sigma(i: int, n: int, equation: float = 0.0) -> float:
         total_sum += j
 
     return total_sum
+
 
 def sigma_p(i: int, n: int, equation: float = 1.0) -> float:
     """
